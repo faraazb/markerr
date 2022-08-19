@@ -23,7 +23,8 @@ def init_supertokens(api_domain, website_domain, st_connection_uri, st_api_key=N
         ),
         supertokens_config=SupertokensConfig(
             # These are the connection details of the app you created on supertokens.com
-            connection_uri=st_connection_uri
+            connection_uri=st_connection_uri,
+            api_key=st_api_key
         ),
         framework='flask',
         recipe_list=[

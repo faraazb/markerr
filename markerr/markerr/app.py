@@ -73,7 +73,7 @@ def create_app():
     # database connection
     import markerr.db as db
 
-    engine = db.create_engine(app.config["DATABASE"])
+    engine = db.create_engine(app.config["DATABASE_URL"])
     try:
         connection = engine.connect()
         connection.close()
