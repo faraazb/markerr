@@ -1,1 +1,1 @@
-web: gunicorn markerr:create_app()
+web: gunicorn markerr:create_app
