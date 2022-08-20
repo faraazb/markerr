@@ -47,6 +47,18 @@ class Site(Base, mixins.Timestamps):
     allowed_teams = sa.orm.relationship("Team", secondary="team_sites", back_populates="sites")
     """Teams allowed to read and write comments when permission_(read|write)_comments is set to ``teams``"""
 
+    @property
+    def serialize(self):
+        return {
+            "id": self.id,
+            "owner_id": self.owner_id,
+            "name": self.name,
+            "display_name": self.display_name,
+            "pages": {page.url: page.serialize for page in self.pages},
+            "permission_read_comments": self.permission_read_comments.public.value,
+            "permission_write_comments": self.permission_write_comments.public.value
+        }
+
 
 class Page(Base, mixins.Timestamps):
     """
@@ -61,6 +73,10 @@ class Page(Base, mixins.Timestamps):
     site_id = sa.Column(pg.UUID(as_uuid=True), sa.ForeignKey("sites.id"))
     site = sa.orm.relationship("Site", back_populates="pages")
 
-
-
-
+    @property
+    def serialize(self):
+        return {
+            "id": self.id,
+            "site_id": self.site_id,
+            "url": self.url,
+        }

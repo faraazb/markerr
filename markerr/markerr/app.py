@@ -107,11 +107,12 @@ def create_app():
     wtforms_json.init()
 
     # register routes
-    from markerr.views import users, comments, sites
+    from markerr.views import users, comments, sites, pages
     blueprints = [
         users.users,
         comments.comments,
-        sites.sites
+        sites.sites,
+        pages.pages
     ]
     for blueprint in blueprints:
         app.register_blueprint(blueprint)

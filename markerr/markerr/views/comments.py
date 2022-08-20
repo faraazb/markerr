@@ -122,7 +122,7 @@ def get(page_id, root_comment_id=None):
         Comment.is_deleted == False,
         *filters
     ).all()
-    return jsonify({"comments": [item.serialize for item in items]})
+    return jsonify({"status": "success", "data": [item.serialize for item in items]})
 
 
 @comments.route("/<uuid:page_id>", methods=["POST"])
@@ -141,7 +141,7 @@ def post(page_id):
     form = CommentForm.from_json(request.json)
     # log.info(form)
     if not form.validate():
-        return jsonify({"status": "fail", "data": form.errors})
+        return jsonify({"status": "fail", "data": form.errors, "message": "Form field errors"})
     # Now use form.<field>.data to create a model
     comment = Comment(
         user_id=g.user.id,
@@ -168,7 +168,7 @@ def post(page_id):
     # comment.elements = elements
     current_app.session.add(comment)
     current_app.session.commit()
-    return jsonify({"status": "success", "data": comment.serialize})
+    return jsonify({"status": "success", "data": comment.serialize}), 200
 
 
 @comments.route("/<uuid:comment_id>", methods=["PUT"])
@@ -189,7 +189,7 @@ def put(comment_id):
     form = CommentForm.from_json(request.json)
     # log.info(form)
     if not form.validate():
-        return jsonify({"status": "fail", "data": form.errors})
+        return jsonify({"status": "fail", "data": form.errors, "message": "Form field errors"})
 
     comment.heading = form.heading.data,
     comment.content = form.content.data,
@@ -215,7 +215,7 @@ def put(comment_id):
             )
 
     current_app.session.commit()
-    return jsonify({"status": "success", "data": {"comment": comment.serialize}})
+    return jsonify({"status": "success", "data": {"comment": comment.serialize}}), 200
 
 
 @comments.route("/<uuid:comment_id>", methods=["DELETE"])
@@ -227,4 +227,4 @@ def delete(comment_id):
         return jsonify({"status": "fail", "message": "Invalid comment_id. Comment does not exist."}), 400
     comment.is_deleted = True
     current_app.session.commit()
-    return jsonify({"status": "success"})
+    return jsonify({"status": "success"}), 200

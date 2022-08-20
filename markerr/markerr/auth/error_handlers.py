@@ -49,7 +49,7 @@ class InputErrorHandlers(ErrorHandlers):
     @staticmethod
     async def try_refresh_token_callback(req: BaseRequest, err: str, response: BaseResponse):
         response.set_status_code(401)
-        response.set_json_content({"status": "fail", "message": "try token refresh"})
+        response.set_json_content({"status": "fail", "message": err})
         return response
 
     @staticmethod
