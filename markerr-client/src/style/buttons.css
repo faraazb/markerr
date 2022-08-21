@@ -63,6 +63,24 @@ button:not(:disabled),
     border-color: var(--primary-hover);
 }
 
+.button.button-secondary {
+    background-color: var(--secondary-button);
+    color: rgb(20, 20, 20);;
+    white-space: nowrap;
+    --border-radius: 6px;
+    --icon-stroke: currentColor;
+    --icon-fill-bg: var(--secondary-button);
+    --text-md: 13px;
+    --border-radius-sm: 4px;
+}
+
+
+.button-secondary:hover {
+    color: rgb(20, 20, 20);
+    background-color: var(--secondary-button-hover);
+    border-color: var(--secondary-button-hover);
+}
+
 .button-sm,
 .button-xs,
 .button-group-sm>.button {

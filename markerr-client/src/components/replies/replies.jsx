@@ -6,29 +6,27 @@ import history from "../../history";
 import { Comment, CreateComment } from "../comment/comment";
 import { SearchIcon } from "../icons";
 
-
 const Replies = (props) => {
 	const { commentId, setPopupOpen } = props;
-	const [site, ] = useStore.site();
+	const [site] = useStore.site();
 	const [replies, setReplies] = useStore.replies();
-	const [currentPage, ] = useStore.currentPage();
+	const [currentPage] = useStore.currentPage();
 
 	useEffect(() => {
 		if (!site.data) return;
 		if (!currentPage in site.data.pages) return;
 		const pageId = site.data.pages[currentPage].id;
 		(async () => {
-			setReplies({...replies, loading: true, error: false});
+			setReplies({ ...replies, loading: true, error: false });
 			try {
 				const response = await getComments(pageId, commentId);
-				setReplies({data: response, loading: false, error: false});
-			}
-			catch (e) {
-				console.error(e)
-				setReplies({...replies, loading: false, error: true});
+				setReplies({ data: response, loading: false, error: false });
+			} catch (e) {
+				console.error(e);
+				setReplies({ ...replies, loading: false, error: true });
 			}
 		})();
-	}, [])
+	}, []);
 
 	return (
 		<>
@@ -50,10 +48,35 @@ const Replies = (props) => {
 						placeholder="Search.."
 					/>
 				</div>
-				<Comment content={"hello world"} replyTo={"sdhjs"}/>
-				<Comment content={"hello world"} replyTo={"sdhjs"}/>
-				<Comment content={"hello world"} replyTo={"sdhjs"}/>
-				<Comment content={"hello world"} replyTo={"sdhjs"}/>
+				{replies.data !== null &&
+					replies.data.map(
+						({
+							id,
+							display_id,
+							created,
+							user,
+							content,
+							reply_to_id,
+							parent_id,
+							is_resolved,
+							elements,
+						}) => {
+							return (
+								<Comment
+									key={id}
+									id={id}
+									created={created}
+									user={user}
+									displayId={display_id}
+									content={content}
+									replyToId={reply_to_id}
+									parentId={parent_id}
+									elements={elements}
+									isResolved={is_resolved}
+								/>
+							);
+						}
+					)}
 			</div>
 		</>
 	);

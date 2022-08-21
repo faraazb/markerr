@@ -1,6 +1,5 @@
 import { h, Fragment } from "preact";
 
-
 const SipLineIcon = (props) => {
 	const { className } = props;
 
@@ -89,7 +88,7 @@ const SearchIcon = (props) => {
 };
 
 const UsersIcon = (props) => {
-    const { className } = props;
+	const { className } = props;
 	let classes = "";
 	if (className) {
 		classes = " " + className;
@@ -97,7 +96,7 @@ const UsersIcon = (props) => {
 
 	return (
 		<svg
-            className={`icon${classes}`}
+			className={`icon${classes}`}
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 16 16"
 			width="16"
@@ -111,4 +110,25 @@ const UsersIcon = (props) => {
 	);
 };
 
-export { SipLineIcon, MarkerIcon, ArrowDropRightIcon, SearchIcon, UsersIcon };
+const CloseLineIcon = (props) => {
+	const { className } = props;
+	let classes = "";
+	if (className) {
+		classes = " " + className;
+	}
+
+	return (
+		<svg
+			className={`icon${classes}`}
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			width="24"
+			height="24"
+		>
+			<path fill="none" d="M0 0h24v24H0z" />
+			<path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+		</svg>
+	);
+};
+
+export { SipLineIcon, MarkerIcon, ArrowDropRightIcon, SearchIcon, UsersIcon, CloseLineIcon };

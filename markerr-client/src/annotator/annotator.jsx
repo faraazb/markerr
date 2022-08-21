@@ -64,12 +64,10 @@ export const Annotator = () => {
 
 		// get site data
 		async function getCurrentSite() {
-			console.log("getting current site")
 			setSite({...site, loading: true, error: false});
 			try {
 				const siteData = await getSite(window.location.hostname);
 				setSite({data: siteData, loading: false, error: false});
-				console.log(site);
 			}
 			catch (e) {
 				console.error(e);
@@ -81,9 +79,9 @@ export const Annotator = () => {
 		// poll for pathname changes, required when JS is changing paths, e.g. SPAs
 		// comments will rerender
 		// this causes a lot of rerendering investigate
-		// setInterval(() => {
-		// 	if (window.location.pathname !== page) setPage(window.location.pathname);
-		// }, 100);
+		setInterval(() => {
+			if (window.location.pathname !== page) setPage(window.location.pathname);
+		}, 1000);
 
 		// initialize the roomjs
 		if (theRoom) {
@@ -118,18 +116,6 @@ export const Annotator = () => {
 			XPathResult.FIRST_ORDERED_NODE_TYPE,
 			null
 		).singleNodeValue;
-	};
-
-	const getElementByCssPath = (path) => {
-		return document.querySelector(path);
-	};
-
-	const getComments = async () => {
-		const response = await fetch(
-			`${API}/comments/0d17eb3f-1e4f-4201-b070-d05a4533760c`
-		);
-		const data = await response.json();
-		setUser(JSON.stringify(data));
 	};
 
 	return (

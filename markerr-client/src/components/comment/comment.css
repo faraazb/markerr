@@ -28,7 +28,7 @@
 
 .comment {
 	display: grid;
-	grid-template-rows: [title] 15px [replyto] auto [content] 1fr [attachments] auto 5px;
+	grid-template-rows: [title] auto [replyto] minmax(0, auto) [attachments] auto [content] 1fr [actions] auto 5px;
 	row-gap: 15px;
 	padding: 5px;
 	font-family: var(--font-sans);
@@ -44,6 +44,12 @@
 
 .comment > .content {
 	grid-row-start: content;
+}
+
+.comment > .actions {
+	grid-row-start: actions;
+	display: flex;
+	align-items: flex-end;
 }
 
 .username {
@@ -76,6 +82,11 @@
 
 }
 
+.elements {
+	font-family: var(--font-sans);
+    padding: 5px;
+}
+
 .chip {
 	height: 16px;
 	display: flex;
@@ -97,6 +108,7 @@
 
 
 .reply-to {
+	grid-row-start: replyto;
 	display: flex;
 	flex-direction: column;
 	row-gap: 5px;

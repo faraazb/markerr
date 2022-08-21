@@ -24,6 +24,9 @@ async function getSite(domain) {
             if (response.data.status === SUCCESS) {
                 return response.data.data;
             }
+            else {
+                console.error(response.data.message);
+            }
         }
     }
     catch (e) {
@@ -41,14 +44,36 @@ async function getComments(pageId, commentId) {
         url = `/comments/${pageId}/${commentId}`;
     }
     try {
-        console.log(`API GET: ${url}`)
         const response = await api.get(url, {withCredentials: true});
         if (response.data) {
             if (response.data.status === SUCCESS) {
                 return response.data.data;
             }
             else {
-                return null;
+                console.error(response.data.message);
+            }
+        }
+    }
+    catch (e) {
+        throw e;
+    }
+}
+
+
+async function createComment(pageId, comment) {
+    if (!comment || !pageId) {
+        console.error("rejected")
+        return null;
+    }
+    const {content, elements} = comment;
+    try {
+        const response = await api.post(`/comments/${pageId}`, comment, {withCredentials: true});
+        if (response.data) {
+            if (response.data.status === SUCCESS) {
+                return response.data.data;
+            }
+            else {
+                console.error(response.data.message);
             }
         }
     }
@@ -80,4 +105,4 @@ async function createPage(page) {
     }
 }
 
-export { API_DOMAIN, api, getSite, getComments };
+export { API_DOMAIN, api, getSite, getComments, createComment, createPage };
