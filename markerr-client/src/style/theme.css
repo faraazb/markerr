@@ -1,0 +1,36 @@
+:root {
+    --primary: #1dbf5e;
+    --primary-hover: #189e4e;
+    --icon-fill: #777;
+}
+
+
+:root {
+  --font-sans-serif: "Space Grotesk", sans-serif;
+  --font-sans: "Noto Sans", sans-serif;
+  --font-mono: "Input Mono", monospace;
+}
+
+input, textarea {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+}
+
+label {
+    font-family: var(--font-sans);
+}
+
+.button {
+    font-family: var(--font-sans-serif);
+}
+
+.nav-button {
+    font-family: var(--font-sans-serif);
+    color: blue;
+}
+
+.header {
+    font-family: var(--font-sans-serif);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}

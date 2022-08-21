@@ -1,0 +1,148 @@
+/* @import "../components/theme.css";
+@import "../components/buttons.css"; */
+/* @import "../components/comment/comment.css"; */
+
+.icon {
+	pointer-events: none;
+}
+
+.icon-sm {
+	height: 18px;
+	width: 18px;
+	fill: var(--icon-fill)
+}
+
+.icon-md {
+	width: 24px;
+	height: 24px;
+	margin-right: 10px;
+	fill: var(--icon-fill)
+}
+
+.annotator-text-highlight {
+	background-color: rgb(255, 117, 82);
+}
+
+/* inspector styles */
+.annotator-element-inspector {
+	cursor: pointer;
+	position: absolute;
+	pointer-events: none;
+	border: 2px dashed tomato;
+	z-index: 99999;
+    /* transition: all 200ms; */
+	background-color: rgba(180, 187, 105, 0.2);
+}
+
+.action-buttons {
+	bottom: 25px;
+	right: 90px;
+	position: fixed;
+	z-index: 2147483000;
+	display: flex;
+	align-items: center;
+	column-gap: 10px;
+}
+
+.action-button {
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	background: blue;
+}
+
+#annotator-button {
+	appearance: none;
+	border: none;
+	position: fixed;
+	z-index: 2147483000;
+	bottom: 20px;
+	right: 20px;
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+	/* background: blue; */
+}
+
+.annotator-popup {
+	/* background-color: blue; */
+	background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+	height: calc(100% - 145px);
+	width: 376px;
+	min-height: 250px;
+	max-height: 704px;
+	z-index: 2147483000;
+	position: fixed;
+	bottom: 60px;
+	right: 20px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px;
+	border-radius: 8px;
+	/* display: block; */
+	overflow: hidden;
+	visibility: hidden;
+	transition-property: all;
+	transition-timing-function: ease, ease, ease;
+	transition-delay: 0s, 0s, 0s;
+	transition-duration: 100ms;
+	opacity: 0;
+
+	display: grid;
+	grid-template-rows: [popup-title] 60px [popup-content] 1fr [popup-footer] 25px;
+
+	/* justify-content: center; */
+
+	/* font-family: 'Inter';
+	font-size: 14px; */
+}
+
+.annotator-popup.show {
+	visibility: visible;
+	opacity: 1;
+	bottom: 80px;
+}
+
+.popup-header {
+	display: flex;
+	align-items: center;
+	padding: 20px;
+}
+
+.popup-header-actions {
+	margin-left: auto;
+}
+
+.popup-content {
+	/* height: 100%; */
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+	overflow: auto;
+	background-color: #f5f5f5;
+	border-top: 1px solid rgb(207, 207, 207);
+	border-bottom: 1px solid rgb(207, 207, 207);
+}
+
+
+
+.header-1 {
+	font-family: 'Inter';
+	font-size: 1.5rem;
+}
+
+
+
+
+
+
+.search {
+	display: flex;
+	align-items: center;
+	column-gap: 4px;
+	padding: 8px;
+	border-radius: 6px;
+	background-color: #e6e6e6;
+	width: 100%;
+	font-size: 0.9rem;
+	box-sizing: border-box;
+}

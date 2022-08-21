@@ -1,0 +1,125 @@
+.button:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.button:hover {
+    color: #4c5a67;
+    text-decoration: none;
+}
+
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+    cursor: pointer;
+}
+
+.button {
+    border: none;
+    border-top-color: currentcolor;
+    border-right-color: currentcolor;
+    border-bottom-color: currentcolor;
+    border-left-color: currentcolor;
+    border-radius: var(--border-radius);
+    box-shadow: var(--button-shadow);
+    font-size: var(--text-md);
+}
+
+.button {
+    display: inline-block;
+    font-weight: 500;
+    color: #4c5a67;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0);
+    padding: .5rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: .375rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.button-block {
+    display: block;
+    width: 100%;
+}
+
+.button.button-primary {
+    background-color: var(--primary);
+    color: #fff;
+    white-space: nowrap;
+    --border-radius: 6px;
+    --icon-stroke: currentColor;
+    --icon-fill-bg: var(--primary);
+    --text-md: 13px;
+    --border-radius-sm: 4px;
+}
+
+.button-primary:hover {
+    color: #fff;
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.button-sm,
+.button-xs,
+.button-group-sm>.button {
+    padding: .25rem .5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: var(--border-radius-sm);
+}
+
+
+
+
+
+
+
+/* CSS */
+.button-30 {
+	align-items: center;
+	appearance: none;
+	background-color: #FCFCFD;
+	border-radius: 4px;
+	border-width: 0;
+	box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+	box-sizing: border-box;
+	color: #36395A;
+	cursor: pointer;
+	display: inline-flex;
+	font-family: "JetBrains Mono", monospace;
+	height: 48px;
+	justify-content: center;
+	line-height: 1;
+	list-style: none;
+	overflow: hidden;
+	padding-left: 16px;
+	padding-right: 16px;
+	position: relative;
+	text-align: left;
+	text-decoration: none;
+	transition: box-shadow .15s, transform .15s;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	white-space: nowrap;
+	will-change: box-shadow, transform;
+	font-size: 18px;
+}
+
+.button-30:focus {
+	box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+	box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+	transform: translateY(-2px);
+}
+
+.button-30:active {
+	box-shadow: #D6D6E7 0 3px 7px inset;
+	transform: translateY(2px);
+}
