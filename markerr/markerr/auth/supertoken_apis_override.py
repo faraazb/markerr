@@ -96,7 +96,7 @@ def override_thirdpartyemailpassword_apis(original_implementation: APIInterface)
             current_app.session.commit()
             # send response
             api_options.response.set_status_code(200)
-            api_options.response.set_json_content({"status": "success", "data": {"user": user.serialize}})
+            api_options.response.set_json_content({"status": "success", "data": {"user": user.serialize()}})
         elif isinstance(result, SignUpPostEmailAlreadyExistsError):
             api_options.response.set_status_code(400)
             api_options.response.set_json_content({"status": "fail", "data": None, "message": "Email already exists"})

@@ -50,8 +50,8 @@ class Site(Base, mixins.Timestamps):
     @property
     def serialize(self):
         return {
-            "id": self.id,
-            "owner_id": self.owner_id,
+            "id": str(self.id),
+            "owner_id": str(self.owner_id),
             "name": self.name,
             "display_name": self.display_name,
             "pages": {page.url: page.serialize for page in self.pages},

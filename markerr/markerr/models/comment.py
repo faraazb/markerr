@@ -28,17 +28,15 @@ class Comment(Base, mixins.Timestamps):
     """
 
     __tablename__ = "comments"
-    # TODO: Look into indexing
-    #  https://github.com/hypothesis/h/blob/1541b085abb10987199379301bd5e03cef6ee2c9/h/models/annotation.py#L18
+    # TODO: indexing
     id = sa.Column(pg.UUID(as_uuid=True), primary_key=True, server_default=sa.func.uuid_generate_v4())
 
     display_id = sa.Column(sa.Integer, DISPLAY_SEQ, server_default=DISPLAY_SEQ.next_value())
     is_deleted = sa.Column(sa.Boolean, default=False, nullable=False)
 
-    is_public = sa.Column(sa.Boolean, default=True, nullable=False)
-    """to be deprecated"""
+    is_resolved = sa.Column(sa.Boolean, default=False, nullable=False)
 
-    heading = sa.Column(sa.UnicodeText)
+    # heading = sa.Column(sa.UnicodeText)
     content = sa.Column(sa.UnicodeText, nullable=False)
 
     user_id = sa.Column(pg.UUID(as_uuid=True), sa.ForeignKey("users.id"), nullable=False)
@@ -75,11 +73,12 @@ class Comment(Base, mixins.Timestamps):
         return {
             "id": self.id,
             "display_id": self.display_id,
-            "is_public": self.is_public,
-            "user_id": self.user_id,
+            "is_resolved": self.is_resolved,
+            "created": self.created,
+            "updated": self.updated,
+            "user": self.user.serialize(only_profile=True),
             "reply_to_id": self.reply_to_id,
             "parent_id": self.parent_id,
-            "heading": self.heading,
             "content": self.content,
             "elements": [element.serialize for element in self.elements],
             "is_deleted": self.is_deleted

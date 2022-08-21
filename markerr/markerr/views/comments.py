@@ -18,15 +18,13 @@ class TextHighlightForm(Form):
 
 class ElementForm(Form):
     element = StringField()
-    css_path = StringField(validators=[InputRequired()])
+    css_selector = StringField(validators=[InputRequired()])
     xpath = StringField(validators=[InputRequired()])
     text_highlights = FieldList(FormField(TextHighlightForm))
 
 
 class CommentForm(Form):
-    # page_id = StringField(validators=[InputRequired(), does_page_exist])
-    # is_public = BooleanField(validators=[InputRequired()])
-    heading = StringField(validators=[InputRequired()])
+    # heading = StringField(validators=[InputRequired()])
     content = StringField(validators=[InputRequired()])
     # use validators=[DataRequired()] to require elements
     elements = FieldList(FormField(ElementForm))
@@ -116,7 +114,7 @@ def get(page_id, root_comment_id=None):
                 Comment.team_id == None
             ))
     # NOTE is operator (parent_id is None) doesn't work with query filters
-    items = Comment.query.filter(
+    items = Comment.query.order_by(Comment.updated.desc()).filter(
         Comment.page_id == page_id,
         Comment.parent_id == root_comment_id,
         Comment.is_deleted == False,
@@ -146,7 +144,7 @@ def post(page_id):
     comment = Comment(
         user_id=g.user.id,
         page_id=page_id,
-        heading=form.heading.data,
+        # heading=form.heading.data,
         content=form.content.data,
         parent_id=form.parent_id.data,
         reply_to_id=form.reply_to_id.data,
@@ -156,7 +154,7 @@ def post(page_id):
         # highlights = []
         element = Element(
             element=e["element"],
-            css_path=e["css_path"],
+            css_selector=e["css_selector"],
             xpath=e["xpath"]
         )
         comment.elements.append(element)
@@ -204,7 +202,7 @@ def put(comment_id):
         # highlights = []
         element = Element(
             element=e["element"],
-            css_path=e["css_path"],
+            css_selector=e["css_path"],
             xpath=e["xpath"]
         )
         comment.elements.append(element)

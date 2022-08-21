@@ -36,7 +36,7 @@ class Element(Base):
     id = sa.Column(pg.UUID(as_uuid=True), primary_key=True, server_default=sa.func.uuid_generate_v4())
     comment_id = sa.Column(pg.UUID(as_uuid=True), sa.ForeignKey("comments.id"), nullable=False)
     element = sa.Column(sa.Text)
-    css_path = sa.Column(sa.Text)
+    css_selector = sa.Column(sa.Text)
     xpath = sa.Column(sa.Text)
 
     # has_text_highlights = sa.Column(sa.Boolean, default=False, nullable=False)
@@ -47,7 +47,7 @@ class Element(Base):
         return {
             "id": self.id,
             "element": self.element,
-            "css_path": self.css_path,
+            "css_selector": self.css_selector,
             "xpath": self.xpath,
             "text_highlights": [highlight.serialize for highlight in self.text_highlights]
         }

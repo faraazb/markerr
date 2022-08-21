@@ -31,15 +31,18 @@ class User(Base, Timestamps):
     def __str__(self):
         return f"{self.id} {self.full_name}"
 
-    @property
-    def serialize(self):
+    def serialize(self, only_profile=False):
         # TODO Send teams and sites - need to add serialize on those models
         # IDK why str(self.id: UUID) is needed. Probably bc Supertoken's
         # jsonify implementation doesn't handle UUIDs
-        return {
+        serialized = {
             "id": str(self.id),
-            "email": self.email,
             "username": self.username,
             "short_name": self.short_name,
             "full_name": self.full_name
         }
+        if not only_profile:
+            serialized["email"] = self.email
+            # serialized["teams"] = [team.serialize for team in self.teams]
+            # serialized["sites"] = [site.serialize for site in self.sites]
+        return serialized

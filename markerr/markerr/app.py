@@ -43,6 +43,7 @@ def create_app():
         # load config.py at app root
         app.config.from_pyfile('config.py', silent=True)
     else:
+        log.info("using production config")
         # load all env variables with "FLASK_" prefix
         # the prefix is dropped for config key
         app.config.from_prefixed_env()
